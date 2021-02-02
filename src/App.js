@@ -1,6 +1,6 @@
 import './converted.css';
 import React from "react";
-import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
+import ReactHtmlParser from 'react-html-parser';
 import Element from "./Element/Element";
 const elementList = require("./PeriodicTableJSON.json");
 
@@ -96,7 +96,7 @@ class App extends React.Component {
             usedEls.map(el => {
                 var usedMore = used[el] > 1
                 var text = usedMore === true ? `${el}<sub>${used[el]}</sub>` : el;
-                result += text + " ";
+                return result += text + " ";
 
             });
             this.setState({elementName: result})

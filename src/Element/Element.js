@@ -2,10 +2,6 @@ import "./Element.css";
 import React from "react";
 
 class Element extends React.Component {
-    constructor(props) {
-        super(props);
-    };
-
     render() {
         return (
             <div
