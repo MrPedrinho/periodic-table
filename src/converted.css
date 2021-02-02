@@ -165,12 +165,6 @@ body {
   font-size: var(--font-size);
 }
 
-@media (max-width: 1024px) {
-  .example-element, .reset-button, .table-title, #molar-mass-total, #element-display {
-    --font-size: 6px;
-  }
-}
-
 @media (max-width: 960px) {
   .example-element, .reset-button, .table-title, #molar-mass-total, #element-display {
     --font-size: 6px;
