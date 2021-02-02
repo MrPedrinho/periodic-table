@@ -1,0 +1,188 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+$metaloids-color: #a03131;
+$noble-gases-color: #d1a823;
+$reactive-color: #cc7c0c;
+$metals-color: #53b2a2;
+$alkali-color: #347066;
+
+$cell-size: 3.7vw;
+
+$font-size: 16px;
+
+$tableHeight: 70vh;
+$element-font: "Montserrat", sans-serif;
+
+* {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  margin-left: 10%;
+  width: 80%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#molar-mass-total {
+  font-family: $element-font;
+}
+
+.alkali {
+  background-color: #347066;
+}
+
+.metals {
+  background-color: #53b2a2;
+}
+
+.metaloids {
+  background-color: #a03131;
+}
+
+.reactive {
+  background-color: #cc7c0c;
+}
+
+.noble-gases {
+  background-color: #d1a823;
+}
+
+.table {
+  display: grid;
+  justify-items: center;
+  align-content: center;
+  grid-template: repeat(7, $cell-size) 2vw repeat(2, $cell-size) / repeat(
+      18,
+      $cell-size
+    );
+  min-width: 100%;
+  background-color: rgb(230, 230, 230);
+  min-height: $tableHeight;
+  padding: 1%;
+  box-shadow: 10px 10px 23px -5px rgba(0, 0, 0, 0.49);
+  -webkit-box-shadow: 10px 10px 23px -5px rgba(0, 0, 0, 0.49);
+  -moz-box-shadow: 10px 10px 23px -5px rgba(0, 0, 0, 0.49);
+  gap: 6px;
+  margin-bottom: 10vh;
+}
+
+.reset-button {
+  cursor: pointer;
+  background-color: #3b4252;
+  border-radius: 20px;
+  width:100%;
+  height: 35%;
+  color: white;
+  font-size: 0.6 * $font-size;
+  text-align:center;
+  grid-column: 8 / span 2;
+  grid-row: 3;
+  justify-content: center;
+}
+
+.table-title {
+  width: 100%;
+  height: 100%;
+  font-size: 0.8 * $font-size;
+  justify-content: flex-end;
+}
+
+#molar-mass-total {
+  grid-column: 9 / span 4;
+  grid-row: 2;
+  font-size: 0.8 * $font-size;
+  width: 100%;
+}
+
+#element-display {
+  grid-column: 9 / span 4;
+  grid-row: 1;
+  font-size: 0.8 * $font-size;
+  width: 100%;
+  line-height: $cell-size;
+}
+
+.element-display {
+  grid-column: 7 / span 2;
+  grid-row: 1;
+  font-size: 0.8 * $font-size;
+}
+
+.mass-display {
+  grid-column: 7 / span 2;
+  grid-row: 2;
+}
+
+.center-text {
+  display: flex;
+  align-items: center;
+}
+
+.example-element {
+  grid-column: 4 / span 2;
+  grid-row: 1 / span 2;
+  width: 100%;
+  height: 100%;
+  font-family: "Montserrat", sans-serif;
+  box-shadow: 0px 0px 2px 0px rgba(0,0,0,1);
+  -webkit-box-shadow: 0px 0px 2px 0px rgba(0,0,0,1);
+  -moz-box-shadow: 0px 0px 2px 0px rgba(0,0,0,1);
+  font-size: 0.6 * $font-size;
+
+  .info {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-top: -25%;
+    padding-left: 5%;
+  }
+
+  .state {
+    margin-bottom: auto;
+    margin-left: auto;
+    border: 1px solid black;
+    border-right-width: 0;
+    border-top-width: 0;
+    width: 25%;
+    height: 25%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .number {
+    height: 25%;
+  }
+
+  .symbol {
+    height: 35%;
+    width: 100%;
+    font-weight: 700;
+    font-size: $font-size;
+  }
+
+  .mass {
+    height: 17.5%;
+    width: 75%;
+    text-align: center;
+    font-weight: 500;
+  }
+
+  .name {
+    height: 17.5%;
+    width: 100%;
+    text-align: center;
+    font-size: 0.6*$font-size;
+  }
+}
