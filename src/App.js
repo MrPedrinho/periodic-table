@@ -57,7 +57,6 @@ class App extends React.Component {
     }
 
     addNewElementToTotal (elName) {
-        console.log(this.state)
         this.state.usedElements.push(elName);
         var prettyName = elementList.elements[elementList.order.indexOf(elName)].symbol
         this.state.prettyElementList.push(prettyName)
@@ -79,18 +78,18 @@ class App extends React.Component {
         if (!this.state.prettyElementList.length) {
             this.setState({elementName: "N/A"})
         } else {
-            var list = this.state.prettyElementList
+            var tempElList = this.state.prettyElementList
             var result = "";
             var used = {};
-            var usedEls = []
-            for (var i=0; i<list.length; i++) {
-                if (usedEls.indexOf(list[i]) < 0) {
-                    usedEls.push(list[i])
+            var usedEls = [];
+            for (var i=0; i<tempElList.length; i++) {
+                if (usedEls.indexOf(tempElList[i]) < 0) {
+                    usedEls.push(tempElList[i])
                 }
-                if (used[list[i]]) {
-                    used[list[i]]++;
+                if (used[tempElList[i]]) {
+                    used[tempElList[i]]++;
                 } else {
-                    used[list[i]] = 1;
+                    used[tempElList[i]] = 1;
                 }
             }
             usedEls.map(el => {
