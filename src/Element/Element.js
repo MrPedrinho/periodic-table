@@ -1,29 +1,23 @@
-import "./Element.css";
 import React from "react";
+import "./ElementStyle.scss";
 
-
-
-class Element extends React.Component {
-    render() {
-        return (
-            <div
-                onClick={this.props.onClick}
-                className={`element ${this.props.elementClass}`}
-                style={{
-                    gridColumn: this.props.xPosition,
-                    gridRow: this.props.yPosition
-                }}
-            >
-                <div className="state">{this.props.dState.charAt(0)}</div>
-                <div className="info">
-                    <div className="number">{this.props.atomicNumber}</div>
-                    <div className="symbol">{this.props.symbol}</div>
-                    <div className="mass">{this.props.atomicMass.toFixed(5)}</div>
-                    <div className="name">{this.props.name}</div>
-                </div>
+export default function Element ({onClick,xPosition,yPosition,elementClass,dState,atomicNumber,symbol,atomicMass,name}) {
+    return(
+        <div
+            onClick={onClick}
+            className={`element ${elementClass}`}
+            style={{
+                gridColumn: xPosition,
+                gridRow: yPosition
+            }}
+        >
+            <div className="state">{dState.charAt(0)}</div>
+            <div className="info">
+                <div className="number">{atomicNumber}</div>
+                <div className="symbol">{symbol}</div>
+                <div className="mass">{atomicMass.toFixed(5)}</div>
+                <div className="name">{name}</div>
             </div>
-        )
-    }
+        </div>
+    )
 }
-
-export default Element;
