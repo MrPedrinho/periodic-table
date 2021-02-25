@@ -13,8 +13,8 @@ function App() {
   const [molecule, setMolecule] = useState("N/A");
   const [currentElement, setCurrentElement] = useState({configuration: "", class:"", state:"", number: 0, mass: 0, symbol: ""});
   const [search, setSearch] = useState("");
-  const [mass, setMass] = useState(0);
-  const [mol, setMole] = useState(0);
+  const [mass, setMass] = useState(0.0);
+  const [mole, setMole] = useState(0);
 
   useEffect(() => {
     var info = elementList.elements[elementList.order.indexOf("hydrogen")];
@@ -63,7 +63,7 @@ function App() {
         var newMass = elementList.elements[indexOfEl].atomic_mass;
         total += newMass;
     }
-    total = total.toFixed(5) + " g/mol"
+    total = total.toFixed(5)
     setMolarMass(total)
     getElementName(prettyList)
   }
@@ -99,7 +99,7 @@ function App() {
             <div className="table-title element-display center-text">Element:</div>
             <div id="element-display" className="">{ReactHtmlParser(molecule)}</div>
             <div className="table-title mass-display center-text">Molar Mass:</div>
-            <div id="molar-mass-total" className="center-text">{molarMass}</div>
+            <div id="molar-mass-total" className="center-text">{molarMass} g/mol</div>
             <div className={`example-element ${currentElement.class}`}>
                 <div className="state">{currentElement.state.charAt(0)}</div>
                 <div className="info">
@@ -118,16 +118,24 @@ function App() {
                     dState={el.phase}
                     atomicNumber={el.number}
                     symbol={el.symbol}
-                    atomicMass={el.atomic_mass}
+                    atomicMass={el.atomic_mass} 
                     name={el.name}
                     search={search}
                 />
             })}
         </div>
-        <div>
-          <input type="number" min="0" placeholder="mass" onChange={(e) => e.target.value ? setMass(parseInt(e.target.value)) : setMass(0)}/>
-          <div className="mol-calculator">
-          <math xmlns='http://www.w3.org/1998/Math/MathML'> <mi> n </mi> <mo> = </mo> <mfrac> <mrow> <mi> {mass} </mi> </mrow> <mrow> <mi> {molarMass} </mi> </mrow> </mfrac> <mo> = </mo> <mn> {(parseInt(mass)/parseInt(molarMass)).toFixed(5)} mol</mn> </math>
+        <div className="mol-calculator">
+          <p>Mol calculator</p>
+          <input step="0.01" type="number" min="0" placeholder="mass" onChange={(e) => e.target.value ? setMass(parseFloat(e.target.value)) : setMass(0)}/>
+          <div>
+            <math xmlns='http://www.w3.org/1998/Math/MathML'> <mi> n </mi> <mo> = </mo> <mfrac> <mrow> <mi> {mass} </mi> </mrow> <mrow> <mi> {molarMass} </mi> </mrow> </mfrac> <mo> = </mo> <mn> {(mass / parseFloat(molarMass)).toFixed(5)} mol</mn> </math>
+          </div>
+        </div>
+        <div className="mass-calculator">
+          <p>Mass calculator</p>
+          <input step="0.01" type="number" min="0" placeholder="mol" onChange={(e) => e.target.value ? setMole(parseFloat(e.target.value)) : setMole(0)}/>
+          <div>
+            <math xmlns='http://www.w3.org/1998/Math/MathML'> <mi> m </mi> <mo> = </mo> <mi> {mole} </mi> <mo> x </mo> <mi> {molarMass} </mi> <mo> = </mo> <mi> {(mole * parseFloat(molarMass)).toFixed(5)} g</mi> </math> 
           </div>
         </div>
     </div>
