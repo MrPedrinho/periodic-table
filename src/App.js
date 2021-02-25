@@ -10,8 +10,11 @@ function App() {
   const [molarMass, setMolarMass] = useState(0);
   const [usedElements, setUsedElements] = useState([]);
   const [prettyElementList, setPrettyElementList] = useState([]);
-  const [molecule, setMolecule] = useState("");
+  const [molecule, setMolecule] = useState("N/A");
   const [currentElement, setCurrentElement] = useState({configuration: "", class:"", state:"", number: 0, mass: 0, symbol: ""});
+  const [search, setSearch] = useState("");
+  const [mass, setMass] = useState(0);
+  const [mol, setMole] = useState(0);
 
   useEffect(() => {
     var info = elementList.elements[elementList.order.indexOf("hydrogen")];
@@ -83,6 +86,9 @@ function App() {
 
   return (
     <div className="container">
+        <input placeholder="Search" onChange={(e) => {
+          setSearch(e.target.value)
+        }}/>
         <div className="table">
             <div className="reset-button center-text" onClick={() => {
                 setMolarMass(0);
@@ -114,8 +120,15 @@ function App() {
                     symbol={el.symbol}
                     atomicMass={el.atomic_mass}
                     name={el.name}
+                    search={search}
                 />
             })}
+        </div>
+        <div>
+          <input type="number" min="0" placeholder="mass" onChange={(e) => e.target.value ? setMass(parseInt(e.target.value)) : setMass(0)}/>
+          <div className="mol-calculator">
+          <math xmlns='http://www.w3.org/1998/Math/MathML'> <mi> n </mi> <mo> = </mo> <mfrac> <mrow> <mi> {mass} </mi> </mrow> <mrow> <mi> {molarMass} </mi> </mrow> </mfrac> <mo> = </mo> <mn> {(parseInt(mass)/parseInt(molarMass)).toFixed(5)} mol</mn> </math>
+          </div>
         </div>
     </div>
   );
